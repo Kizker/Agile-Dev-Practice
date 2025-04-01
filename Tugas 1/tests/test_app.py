@@ -10,15 +10,15 @@ class TestGreetingApp(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()
 
-    def test_greet_default(self):
-        response = self.app.get('/greet')
+    def test_home_page(self):
+        response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Hello, User!', response.data)
+        self.assertIn(b'Masukkan Nama Anda', response.data)  # Cek apakah halaman utama tampil
 
-    def test_greet_name(self):
-        response = self.app.get('/greet?name=Miko')
+    def test_greet_post(self):
+        response = self.app.post('/', data={'name': 'Miko'})
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Hello, Miko!', response.data)
+        self.assertIn(b'Hello, Miko!', response.data)  # Cek apakah sapaan muncul
 
 if __name__ == '__main__':
     unittest.main()
