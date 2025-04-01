@@ -1,0 +1,6 @@
+- name: Deploy ke Heroku
+  env:
+    HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  run: |
+    git remote add heroku https://git.heroku.com/simple-greeting-app.git
+    git push heroku main
